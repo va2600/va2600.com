@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>TIT</title>
+<script>
+
+function xsetvol(id,vol){
+document.getElementById(id).setvol(vol)
+
+}
+function getvol(){
+return 30;
+}
+
+
+
+
+function gettop(){
+var st = document.body.scrollTop;
+if(st == 0){
+
+  if(window.pageYOffset){
+    st = window.pageYOffset;
+  } else {
+    st = (document.body.parentElement) ? document.body.parentElement.scrollTop : 0
+  }
+}
+return st+300;
+}
+
+var lastpos = gettop()
+
+
+function voldiff(ele){
+
+x = (Math.abs(gettop()/4 - thisMovie(ele).offsetTop/4))
+if(x > 100){
+return 0
+} else {
+return 100-x
+}
+}
+
+
+
+
+
+    function thisMovie(movieName) {
+        var isIE = navigator.appName.indexOf("Microsoft") != -1;
+        return (isIE) ? window[movieName] : document[movieName];
+    }
+
+    function makeCall(name,str,movnum) {
+        eval("thisMovie(name).volset"+movnum+"(str);")
+    }
+
+
+
+function setvolpoll(ii){
+  if(gettop() != lastpos){
+    lastpos = gettop();
+for(i=1;i<=ii;i++){
+    makeCall('playit'+i,voldiff('playit'+i),i)
+}
+  }
+  setTimeout(eval("'setvolpoll("+ii+")'"),20)
+}
+
+
+function startp(){
+
+
+setvolpoll(3)
+
+}
+</script>
+</head>
+
+
+<body name="body" id="body" onload="startp()">
+<div id="volumeline" style="width: 100%; height: 1px; background: #ff0000; position: fixed; margin-top: 300px; z-index: 1000;"></div>
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+Daniel Ash - Chelsea -- <embed src="playit.swf?mp3url=01.mp3&xxxx=1" quality="best" bgcolor="#ffffff" width="4" height="4" name="playit1" id="playit1" align="middle" swLiveConnect="true" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+Daniel Ash - Burning Man -- <embed src="playit.swf?mp3url=02.mp3&xxxx=2" quality="best" bgcolor="#ffffff" width="4" height="4" name="playit2" id="playit2" align="middle" swLiveConnect="true" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+Daniel Ash - Spooky -- <embed src="playit.swf?mp3url=03.mp3&xxxx=3" quality="best" bgcolor="#ffffff" width="4" height="4" name="playit3" id="playit3" align="middle" swLiveConnect="true" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+<br><br><br>---
+<br><br><br><br>---
+<br><br><br>---
+</body>
+</html>

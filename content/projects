@@ -1,0 +1,64 @@
+			<div id="content">
+				<h1>Projects</h1>
+				
+				<p>Here are some projects that have been made by va2600 members.</p>
+				<p>Feel free to use the code. Send back any modifications/enhancements you might make to the appropriate author.</p>
+				<p>If you have a project you would like to add to this page, please let us know in the va2600 IRC channel!</p>
+
+				<h1>fie</h1>
+				<h3>Pianobarfly</h3>
+				<p>
+				<p style="font-weight: 900;">This project has been taken over. <a href="http://va2600.net/projects/fie/pianobarfly/pianobarfly-2011.01.24.tar.bz2">Here</a> is the updated source.</p>
+				<div style="color: #aaa; font-size: 10pt;">
+				<p>Linux terminal client for Pandora that saves pandora streams to your hard drive as mp3.
+					<a href="http://www.youtube.com/watch?v=LRX977AnO5w">Youtube Demo</a>
+				</p>
+				<p>
+Ubuntu install instructions:
+<blockquote><pre>
+wget http://va2600.net/projects/fie/pianobarfly/pianobarfly.tgz
+tar -xzf pianobarfly.tgz
+cd pianobarfly
+sudo apt-get install cmake libmad0-dev libao-dev
+cmake .
+sudo make
+sudo make install
+</pre></blockquote>
+				</p>
+				</div>
+				</p>
+				<h3>Sound Source</h3>
+				<p>Flash/Javascript interaction to adjust the volume of an mp3 playing within a flash file based on it's location.</p>
+				<p><a href="/projects/fie/ss">Sound Source</a></p>
+
+				<h3>Game of Life</h3>
+				<p>HTML/CSS/Javascript implimentation of John Conway's Game of life. An experiment in cellular automa. There are a few optimizations but it could use work. Larger grid sizes show the rendering down exponentially.</p>
+				<p><a href="/projects/fie/gol">The Game of Life</a></p>
+
+				<h3>Webscreen</h3>
+				<p>Ajax enabled web page that shows a live screen console running locally on the web server.</p>
+				<p><a href="/projects/fie/screen/source0.1.1.tar">Source Code</a></p>
+
+
+				<h1>benkillin</h1>
+                                <h3>Arduino 15 Step Digital Synthesizer</h3>
+                                <p>This project is a digital synthesizer for the arduino microcontroller. It is a 15 step digital synthesizer, which means for each step (which corresponds to a particular button in the button matrix), there is a corresponding &quot;step&quot; in the frequency sequence. So that means the microcontroller loops through an array of length 15 elements and each element is a frequency. As the microcontroller loops through the array it constantly checks the state of the keypad, and if a particular key is pressed, it will read the current state of the potentiometer that controls the frequency (in hertz) and assign that frequency to that step in the sequence. As it loops through the array, it will also send that frequency to a square wave generator so it will output sound from one of the digital IO ports (not analog or <acronym title="pulse width modulation">PWM</acronym>).</p>
+                                <p><a href="/projects/benkillin/DigitalMusicSynth.pde.txt">Sound Source</a></p>
+                                <p><a href="/projects/benkillin/frequencies.cpp">Frequencies</a></p>
+
+
+			</div>
+			<div id="related"><!--
+				<h3>Related links</h3>
+				<ul>		
+					<li><a href="http://cyberpunked.org" title="Cyberpunked, Journal of Philosophy of Science">Cyberpunked</a></li>	
+					<li><a href="http://www.2600.com" title="2600">2600</a></li>							
+					<li><a href="http://www.se2600.org" title="Southeast 2600">se2600</a></li>
+					<li><a href="http://dc2600.org" title="District of Columbia 2600">DC2600</a></li>
+					<li><a href="http://nc2600.net" title="North Carolina 2600">NC2600</a></li>
+					<li><a href="http://2600.757.org/" title="Hampton Roads 2600">HR2600</a></li>
+					
+				</ul>-->
+				<h3>Next Meeting</h3>
+				<p><?php echo $fin;?></p>
+			</div>

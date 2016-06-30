@@ -1,0 +1,37 @@
+<!-- saved from url=(0013)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>playit</title>
+<script language="JavaScript">
+	// This is only needed for Netscape browsers.
+	function flashGetHref() { return location.href; }
+	function flashPutHref(href) { location.href = href; }
+	function flashGetTitle() { return document.title; }
+	function flashPutTitle(title) { document.title = title; }
+
+
+    function thisMovie(movieName) {
+        var isIE = navigator.appName.indexOf("Microsoft") != -1;
+        return (isIE) ? window[movieName] : document[movieName];
+    }
+
+    function makeCall(str) {
+        thisMovie("playit1").asFunc(str);
+    }
+
+</script>
+</head>
+<body bgcolor="#ffffff">
+<!--url's used in the movie-->
+<!--text used in the movie-->
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="1" height="1" id="playit1" align="middle">
+<param name="allowScriptAccess" value="sameDomain" />
+<param name="movie" value="playit.swf" />
+<param name="bgcolor" value="#ffffff" />
+<embed src="playit.swf" quality="best" bgcolor="#ffffff" width="1" height="1" name="playit1" align="middle" swLiveConnect="true" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+</object>
+<!--bookmarks used in the movie-->
+</body>
+</html>

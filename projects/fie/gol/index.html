@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<head>
+<title>Conway's Game of Life (by fie)</title>
+
+<style>
+body{
+margin: 30px;
+}
+#container{
+margin: 20px;
+}
+.cell{
+ display: table-cell;
+ margin: 0px;
+ padding: 0px;
+ width: 10px;
+ height: 10px;
+ border: 0px solid #ccc;
+ border-right: 0px solid;
+ border-bottom: 0px solid;
+ float: left;
+ background: #f00;
+}
+.celldis{
+ display: table-cell;
+ margin: 0px;
+ padding: 0px;
+ width: 10px;
+ height: 10px;
+ border: 0px solid #ddd;
+ border-right: 0px solid;
+ border-bottom: 0px solid;
+ float: left;
+ background: #eee;
+}
+.break{
+ margin: 0px;
+ padding: 0px;
+ clear: left;
+}
+</style>
+
+<script>
+
+
+
+// SO FAR THIS IS THE ONLY PART OF CODE I DIDN"T MAKE
+window.onload = function() {
+  var element = document.getElementById('container');
+  element.onselectstart = function () { return false; } // ie
+  element.onmousedown = function () { return false; } // mozilla
+  
+  gencells(document.getElementById('txt_width').value,document.getElementById('txt_height').value);
+}
+// THIS IS ALL ME BITCHES
+
+var arraymodel = new Array(); 
+
+var enac = "cell"
+var disc = "celldis"
+var pause = true
+var gwidth = 0
+var gheight = 0
+var delay = document.getElementById('txt_delay').value
+var mousestate = false
+var selstate = 0
+///// when you click something it saves which state it was in so you can only change things that were in that state
+
+
+
+
+function resizegrid(w,h){
+  tempam = arraymodel
+  tempw = gwidth
+  temph = gheight
+  gencells(w,h)
+  for(i=0;i<temph;i++){
+    for(ii=0;ii<tempw;ii++){
+      if(abounds(i,ii) && tempam[i][ii]){sel(i,ii)}
+    }
+  }
+}
+
+
+
+
+function mouseup(){
+onlyfirst = false
+mousestate = false
+selstate = 0
+}
+function mousedown(){
+onlyfirst = true
+mousestate = true
+
+}
+
+function sel(i,ii){
+
+  if(arraymodel[i][ii]){
+    document.getElementById("c"+i+"_"+ii).className = disc;
+  } else {
+    document.getElementById("c"+i+"_"+ii).className = enac;
+  }
+  arraymodel[i][ii] = !arraymodel[i][ii]
+}
+
+function checksel(i,ii){
+    if(selstate == 2){selstate = arraymodel[i][ii]; sel(i,ii); return true;}
+
+    if(selstate !== 0 && mousestate && (arraymodel[i][ii] == selstate)){    
+      sel(i,ii)
+    }
+}
+function checksel2(i,ii){
+mousedown()
+selstate = arraymodel[i][ii]
+checksel(i,ii)
+}
+
+function abounds(y,x){
+//alert("c"+y+"_"+x)
+if(x < 0 || x >= gwidth || y < 0 || y >= gheight){
+ return false;
+}
+return true;
+}
+
+
+
+
+
+
+
+function nextstep(){
+pendeval = ""
+
+  for(i = 0; i<gheight; i++){
+
+    for(ii = 0; ii<gwidth; ii++){
+      countsur = 0;
+
+
+      if(abounds(i-1, ii-1) && arraymodel[i-1][ii-1])countsur++;
+      if(abounds(i-1, ii) && arraymodel[i-1][ii])countsur++;
+      if(abounds(i-1, ii+1) && arraymodel[i-1][ii+1])countsur++;
+      if(abounds(i, ii-1) && arraymodel[i][ii-1])countsur++;
+      if(abounds(i, ii+1) && arraymodel[i][ii+1])countsur++;
+      if(abounds(i+1, ii-1) && arraymodel[i+1][ii-1])countsur++;
+      if(abounds(i+1, ii) && arraymodel[i+1][ii])countsur++;
+      if(abounds(i+1, ii+1) && arraymodel[i+1][ii+1])countsur++;
+
+      if(arraymodel[i][ii]){
+        if(abounds(i,ii) && (countsur < 2 || countsur > 3)){
+          pendeval = pendeval + "\n" + 'sel('+i+','+ii+');'
+        }
+
+      }
+      if(!arraymodel[i][ii]){
+        if(abounds(i,ii) && countsur == 3){
+          pendeval = pendeval + "\n" + 'sel('+i+','+ii+');';
+        }
+      }
+
+
+    }
+  }
+
+  eval(pendeval)
+
+  if(pause == 0){
+    setTimeout("nextstep()",delay);
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function gencells(w,h){
+arraymodel = new Array();
+var i = 0
+var ii = 0
+gwidth = w
+gheight = h
+pendinner = ""
+
+document.getElementById("container").style.display = "none"
+
+  while(i<h){
+    arraymodel[i] = new Array();
+    while(ii<w){
+	pendinner = pendinner + "<div class='celldis' onmouseover='checksel("+i+","+ii+")' onmousedown='checksel2("+i+","+ii+")' id='c"+i+"_"+ii+"'></div>";
+
+	arraymodel[i][ii] = false;
+
+	ii++;
+
+
+    }
+	ii = 0;
+	pendinner = pendinner + "<div class='break'></div>";
+        i++;
+  }
+
+document.getElementById("container").innerHTML = pendinner
+document.getElementById("container").style.display = "block"
+
+}
+
+function pauseplay(){
+pause = !pause
+if(pause == false){
+nextstep()
+document.getElementById('pausebutton').value = "| |"
+} else {
+document.getElementById('pausebutton').value = ">"
+}
+}
+window.onmouseup = mouseup;
+</script>
+
+
+</head>
+<body onmouseup="javascript: mouseup();">
+<h1>Game of Life</h1>
+<p>Select cells below and then hit the play button.<br><a href="http://ddi.cs.uni-potsdam.de/HyFISCH/Produzieren/lis_projekt/proj_gamelife/ConwayScientificAmerican.htm">More information.</a></p>
+<div id="container"></div>
+<br>
+
+<h3>Create</h3>
+W: <input type="text" id="txt_width" value="20"><br />
+H: <input type="text" id="txt_height" value="20"><br />
+<input type="button" onclick="javascript: gencells(document.getElementById('txt_width').value,document.getElementById('txt_height').value)" value="Generate"> | <input type="button" onclick="javascript: resizegrid(document.getElementById('txt_width').value,document.getElementById('txt_height').value)" value="Resize">
+<br />
+<h3>Timing</h3>
+Delay: <input type="text" id="txt_delay" value="100" onchange="javascript: delay=this.value">
+<input type="button" onclick="javascript: pauseplay();" id="pausebutton" value=">" title="Play/Pause Button" /><br />
+<!--<input type="button" onclick="javascript: nextstate();" value="nextstate();">--><input type="button" onclick="javascript: nextstep();" value="nextstep();">
+</body>
+</html>

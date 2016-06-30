@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<head>
+<title>Yo dog I heard you liked living</title>
+
+<style>
+.cell{
+ display: table-cell;
+ margin: 0px;
+ padding: 0px;
+ width: 10px;
+ height: 10px;
+ border: 0px solid #ccc;
+ border-right: 0px solid;
+ border-bottom: 0px solid;
+ float: left;
+ background: #f00;
+}
+.celldis{
+ display: table-cell;
+ margin: 0px;
+ padding: 0px;
+ width: 10px;
+ height: 10px;
+ border: 0px solid #ddd;
+ border-right: 0px solid;
+ border-bottom: 0px solid;
+ float: left;
+ background: #eee;
+}
+.break{
+ margin: 0px;
+ padding: 0px;
+ clear: left;
+}
+</style>
+
+<script>
+
+
+
+
+Object.prototype.clone = function () {var o = new Object(); for (var property in this) {o[property] = typeof (this[property]) == 'object' ? this[property].clone() : this[property]} return o}
+
+Array.prototype.clone = function () {var a = new Array(); for (var property in this) {a[property] = typeof (this[property]) == 'object' ? this[property].clone() : this[property]} return a}
+
+
+
+window.onload = function() {
+  var element = document.getElementById('container');
+  element.onselectstart = function () { return false; } // ie
+  element.onmousedown = function () { return false; } // mozilla
+}
+
+
+var arraymodel = new Array(); 
+
+var enac = "cell"
+var disc = "celldis"
+var pause = true
+var delay = document.getElementById('txt_delay').value
+var gwidth = 0
+var gheight = 0
+var tgw = -10
+var tgh = -10
+var xcenter = 0
+var ycenter = 0
+
+var tam = new Array();
+
+var boundwh = new Array();
+
+var mousestate = false
+var selstate = 0
+///// when you click something it saves which state it was in so you can only change things that were in that state
+
+function mouseup(){
+onlyfirst = false
+mousestate = false
+selstate = 0
+}
+function mousedown(){
+onlyfirst = true
+mousestate = true
+
+}
+
+
+function checkbounds(){
+  retval = new Array();
+  retval[0] = false
+  retval[1] = false
+  retval[2] = false
+  retval[3] = false
+  retvalx = new Array()
+  retvalx[0] = false;
+  retvalx[1] = false;
+  ti = 0
+  tii = 0
+  retvalarr = new Array()
+
+  for(i=0;i<gheight;i++){
+    for(ii=0;ii<gwidth;ii++){
+      if(retval[0] == false && arraymodel[i][ii] != false){
+        retval[0] = i
+        retval[1] = ii
+      }
+      if(retval[0] != false && retval[1] != false && arraymodel[i][ii] != false){
+
+	if(!retvalarr[i-retval[0]]){retvalarr[i-retval[0]] = new Array()}
+	retval[i-retval[0]][ii-retval[1]] == true
+        retval[2] = i+1
+        retval[3] = ii+1
+      }
+
+    }
+  }
+boundwh = retval.clone()
+
+retvalx[0] = retval[3]-retval[1]
+retvalx[1] = retval[2]-retval[0]
+return retvalarr
+}
+
+function gresize(wix,hix){
+//if(tgw == gwidth && tgh == gheight){return 0;}
+
+checkbounds()
+
+  tgw = gwidth
+  tgh = gheight
+  gheight = 0
+  gwidth = 0
+
+//  xcenter = (wix > tgw)? Math.round((wix/2)-(tgw/2)): Math.round((tgw/2)-(wix/2))
+//  ycenter = (hix > tgh)? Math.round((hix/2)-(tgh/2)): Math.round((tgh/2)-(hix/2))
+xcenter = Math.round((wix/2)-(boundwh[0]/2))
+ycenter = Math.round((hix/2)-(boundwh[1]/2))
+
+  tam = arraymodel.clone()
+  gencells(wix,hix)
+  for(i = 0; i<gheight; i++){
+    for(ii = 0; ii<gwidth; ii++){
+      if(tam[i][ii] && abounds(ycenter+i,xcenter+ii))sel(i+ycenter,ii+xcenter)
+    }
+  }
+
+
+}
+
+
+function sel(i,ii){
+
+  if(arraymodel[i][ii]){
+    document.getElementById("c"+i+"_"+ii).className = disc;
+  } else {
+    document.getElementById("c"+i+"_"+ii).className = enac;
+  }
+  arraymodel[i][ii] = !arraymodel[i][ii]
+}
+
+function checksel(i,ii){
+    if(selstate == 2){selstate = arraymodel[i][ii]; sel(i,ii); return true;}
+
+    if(selstate !== 0 && mousestate && (arraymodel[i][ii] == selstate)){    
+      sel(i,ii)
+    }
+}
+function checksel2(i,ii){
+mousedown()
+selstate = arraymodel[i][ii]
+checksel(i,ii)
+}
+
+function abounds(y,x){
+//alert("c"+y+"_"+x
+if(gwidth == 0 && gheight == 0){
+  ttgw = tgw
+  ttgh = tgh
+} else {
+  ttgw = gwidth
+  ttgh = gheight
+}
+if(x < 0 || x >= ttgw || y < 0 || y >= ttgh){
+ return false;
+}
+return true;
+}
+
+
+
+
+
+
+
+function nextstep(){
+pendeval = ""
+
+  for(i = 0; i<gheight; i++){
+
+    for(ii = 0; ii<gwidth; ii++){
+      countsur = 0;
+
+
+      if(abounds(i-1, ii-1) && arraymodel[i-1][ii-1])countsur++;
+      if(abounds(i-1, ii) && arraymodel[i-1][ii])countsur++;
+      if(abounds(i-1, ii+1) && arraymodel[i-1][ii+1])countsur++;
+      if(abounds(i, ii-1) && arraymodel[i][ii-1])countsur++;
+      if(abounds(i, ii+1) && arraymodel[i][ii+1])countsur++;
+      if(abounds(i+1, ii-1) && arraymodel[i+1][ii-1])countsur++;
+      if(abounds(i+1, ii) && arraymodel[i+1][ii])countsur++;
+      if(abounds(i+1, ii+1) && arraymodel[i+1][ii+1])countsur++;
+
+      if(arraymodel[i][ii]){
+        if(abounds(i,ii) && (countsur < 2 || countsur > 3)){
+          pendeval = pendeval + "\n" + 'sel('+i+','+ii+');'
+        }
+
+      }
+      if(!arraymodel[i][ii]){
+        if(abounds(i,ii) && countsur == 3){
+          pendeval = pendeval + "\n" + 'sel('+i+','+ii+');';
+        }
+      }
+
+
+    }
+  }
+
+  eval(pendeval)
+
+  if(pause == 0){
+    setTimeout("nextstep()",delay);
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function gencells(w,h){
+
+//if(gheight != 0 || gwidth != 0){
+
+//  gresize(w,h)
+//  return 0;
+//}
+
+arraymodel = new Array();
+var i = 0
+var ii = 0
+gwidth = w
+gheight = h
+pendinner = ""
+
+
+document.getElementById("container").style.display = "none"
+
+  while(i<h){
+arraymodel[i] = new Array();
+    while(ii<w){
+	pendinner = pendinner + "<div class='celldis' onmouseover='checksel("+i+","+ii+")' onmousedown='checksel2("+i+","+ii+")' id='c"+i+"_"+ii+"'></div>";
+
+	arraymodel[i][ii] = false;
+
+	ii++;
+
+
+    }
+	ii = 0;
+	pendinner = pendinner + "<div class='break'></div>";
+        i++;
+  }
+
+document.getElementById("container").innerHTML = pendinner
+document.getElementById("container").style.display = "block"
+
+}
+
+function pauseplay(){
+pause = !pause
+if(pause == false){
+nextstep()
+document.getElementById('pausebutton').value = "| |"
+} else {
+document.getElementById('pausebutton').value = ">"
+}
+}
+</script>
+
+
+</head>
+<body onmouseup="javascript: mouseup();">
+<div id="container"></div>
+<br>
+
+<h3>Create</h3>
+W: <input type="text" id="txt_width" value="20"><br />
+H: <input type="text" id="txt_height" value="20"><br />
+<input type="button" onclick="javascript: gencells(document.getElementById('txt_width').value,document.getElementById('txt_height').value)" value="Generate">
+<br />
+<h3>Timing</h3>
+Delay: <input type="text" id="txt_delay" value="100" onchange="javascript: delay=this.value">
+<input type="button" onclick="javascript: pauseplay();" id="pausebutton" value=">" /><br />
+<input type="button" onclick="javascript: nextstate();" value="nextstate();"><input type="button" onclick="javascript: nextstep();" value="nextstep();">
+</body>
+</html>

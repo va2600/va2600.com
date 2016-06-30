@@ -1,0 +1,28 @@
+
+			<div id="content">
+				<h1>Meeting information</h1>
+				
+				<h3>Arlington</h3>
+				<p>Champps Pentagon at Pentagon Row @ 19:00. See Also: <a href="http://dc2600.org" title="District of Columbia 2600">DC2600</a></p>
+				<h3>Blacksburg</h3>
+				<p>Squires Student Center at Virginia Tech, 118 N. Main St @ 19:00.</p>
+				<h3>Charlottesville</h3>
+				<p>Panera Bread at the Barracks Road Shopping Center @ 18:30.</p>
+				<h3>Virginia Beach</h3>
+				<p>Subway at the Lynnhaven Mall food court @ 18:00. See also: <a href="http://2600.757.org/" title="Hampton Roads 2600">HR2600</a></p>
+				
+			</div>
+			<div id="related">
+				<h3>Related links</h3>
+				<ul>
+					
+					<li><a href="http://dc2600.org" title="District of Columbia 2600">DC2600</a></li>
+					<li><a href="http://2600.757.org/" title="Hampton Roads 2600">HR2600</a></li>
+					<li><a href="http://www.2600.com/meetings/mtg.html" title="List of 2600 meetings">All meets</a></li>
+
+					
+				</ul>
+				<h3>Next Meeting</h3>
+                                <p><?php echo $NextFirstFri;?></p>
+                                <p><span style="font-size: x-small;">(aka: first friday of the month)</span></p>
+			</div>

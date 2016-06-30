@@ -1,0 +1,20 @@
+
+$a->start();
+
+if ($a->getAuth()) {
+        if (isset ($_GET['act']) && $_GET['act'] == "logout") {
+                // Log user out
+                include ("logout.php");
+
+
+sysop@TheGibson:/var/www/logix$ grep -i "\$a->" *
+global.php:$a->start();
+global.php:if ($a->getAuth()) {
+index.php:$username = $a->getUserName();
+load_board.php:$user_id = get_user_id($a->session['username'], $core->database);
+logout.php:$a->logout();
+users.php:              foreach ($a->listUsers() AS $row) {
+users.php:                      foreach ($a->listUsers() AS $row) {
+users.php:                              if ($a->addUser($_POST['username'], $_POST['password']
+)) {
+sysop@TheGibson:/var/www/logix$

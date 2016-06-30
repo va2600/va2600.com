@@ -1,0 +1,25 @@
+ <script type="text/javascript">
+var mfh = 50
+function adjust(){
+mfh += 30
+//document.getElementById("myFrame").style.height = mfh+"px"
+var obj=document.getElementById("myFrame").contentWindow
+
+alert(obj.scrollTop.value)
+}
+
+function Center(id){
+ var obj=document.getElementById(id).parentNode;
+ obj.scrollLeft=750;
+}
+
+</script> 
+
+
+			<div id="content">
+
+				<h1>The Forum</h1><h5>Hosted by <a href="http://nc2600.org">nc2600</a></h5>
+				<p><a href="https://forum.nc2600.org/viewforum.php?f=114" target="myFrame">va2600 forum home.</a></p>
+				<iframe border="0" style="border: 0px solid #fff;" width="720" height="6666" id="myFrame" name="myFrame"  src="https://forum.nc2600.org/viewforum.php?f=114"></iframe>
+				
+			</div>

@@ -1,0 +1,28 @@
+
+			<div id="content">
+				<h1>About</h1>
+				
+				<p>Virginia 2600 is a laid back group of individuals who get together once a month to talk about science and technology. </p>
+				<p>The meetings are open to anyone who has a general interest in technology, though the discussion can be technical / dive into geekery at times.</p>
+				<p>Topics of discussion can be anything, ranging from how GPS uses the fact that radio frequencies reach destinations at different times if transmitted from different locations to triangulate on coordinates to how <a href="http://en.wikipedia.org/wiki/John_von_Neumann">Von Neumann</a> computers are not the most secure design in the world.</p>
+				<p>Meetings are held on the first Friday of every month in <a href="http://www.charlottesville.org/">Charlottesville, Va</a>, <a href="http://www.blacksburg.va.us/">Blacksburg, Va</a>. </p>
+				<p>People in the <abbr title="Northern Virginia">NoVa</abbr> area will want to check out <a href="http://dc2600.org">DC2600</a> as the closest meet in that area is in <a href="http://www.arlingtonva.us/">Arlington, Va</a>.</p>
+				<p>There is also a merged <abbr title="Defcon">DC</abbr>/2600 meetup in the Hampton Roads area. Find out more about that at <a href="http://2600.757.org/" title="Hampton Roads 2600">HR2600</a></p>
+				
+			</div>
+			<div id="related">
+				<h3>Related links</h3>
+				<ul>		
+					<li><a href="http://cyberpunked.org" title="Cyberpunked, Journal of Philosophy of Science">Cyberpunked</a></li>	
+					<li><a href="http://www.2600.com" title="2600">2600</a></li>							
+					<li><a href="http://www.se2600.org" title="Southeast 2600">se2600</a></li>
+					<li><a href="http://dc2600.org" title="District of Columbia 2600">DC2600</a></li>
+					<li><a href="http://nc2600.net" title="North Carolina 2600">NC2600</a></li>
+					<li><a href="http://2600.757.org/" title="Hampton Roads 2600">HR2600</a></li>
+					
+				</ul>
+				<h3>Next Meeting</h3>
+				<!--<p><?=$fin;?></p>-->
+				<p><?php echo $NextFirstFri;?></p>
+				<p><span style="font-size: x-small;">(aka: first friday of the month)</span></p>
+			</div>

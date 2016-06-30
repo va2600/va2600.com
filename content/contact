@@ -1,0 +1,21 @@
+
+			<div id="content">
+				<h1>Contact infoz</h1>
+				
+				<p>The best way to get in contact with people who say they may or may not participate in the va2600 group is using <abbr title="Internet Relay Chat">IRC</abbr>.</p>
+				<p>For those of you who know what <abbr title="Internet Relay Chat">IRC</abbr> is, use <strong>irc.2600.net</strong> as the server and <strong>#va2600</strong> for the channel.</p>
+				<p>For those of you who are not familiar with IRC you can just use <a href="http://widget.mibbit.com/?settings=4099b13941b6e264eaf76e5f3850711c&server=irc.2600.net&channel=%23va2600&noServerTab=false&autoConnect=true" target="_blank">mibbit</a> to join the <abbr title="Chat Room">channel</abbr>.</p>
+				<p>For those of you totally clueless, <abbr title="Internet Relay Chat">IRC</abbr> stands for Internet Relay Chat. <abbr title="Internet Relay Chat">IRC</abbr> is an internet chat service based on the model of people join a chat room and chat to several people at once, and the option exists to chat to just one individual using private messages. For further information, see the wikipedia link under the related links section.</p>
+				
+			</div>
+			<div id="related">
+				<h3>Related links</h3>
+				<ul>
+					
+					<li><a href="http://mibbit.com/">Mibbit AJAX IRC client</a></li>
+					<li><a href="http://widget.mibbit.com/?settings=4099b13941b6e264eaf76e5f3850711c&server=irc.2600.net&channel=%23va2600&noServerTab=false&autoConnect=true" target="_blank">Mibbit Widget</a></li>
+					<li><a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">Wiki IRC</a></li>
+					
+				</ul>
+			</div>
+

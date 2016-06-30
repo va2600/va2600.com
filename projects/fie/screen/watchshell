@@ -1,0 +1,31 @@
+#!/bin/sh
+# lets people watch your screen session over the web,
+# for example to play nethack with an online audience. 
+# see http://pixelfairy.org/quickies/screen.html for 
+# a way to set up telnet for the same effect. this web 
+# version is less effort, but slow in comparison.
+# remember to also change the URL in head.txt
+#
+# run whatever in screen, and then this in the background
+# from another shell (outside that screen session)
+# after your done, remove the file so it stops flashing 
+# in thier browser. sometimes the browser will stop refreshing,
+# just hit reload
+#
+# pixelfairy made this in march 6 2006, its trivial. 
+# public domain. have fun. let me know if you do anything
+# neat with it. my email is pixel. the domain is gimp.org
+#
+# this uses refresh, which is non standard. 
+
+SCREENBUFFER=~/watchshell/screenbuffer
+HEAD=~/watchshell/watchshell_head.txt
+TAIL=~/watchshell/watchshell_tail.txt
+DEST=~/public_html/watchshell.html
+
+while true; do
+	screen -X hardcopy $SCREENBUFFER
+	cat $HEAD $SCREENBUFFER $TAIL > $DEST
+	sleep 1
+done
+
